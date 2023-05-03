@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Profile;
 use App\Models\Tweet;
+use App\Models\Follower;
 
 class User extends Authenticatable
 {
@@ -70,5 +71,21 @@ class User extends Authenticatable
     public function tweets()
     {
         return $this->hasMany(Tweet::class);
+    }
+
+    /**
+     * Followers of current user
+     */
+    public function followers()
+    {
+        return $this->belongsToMany(Follower::class, 'user_id');
+    }
+
+    /**
+     * Following of current user
+     */
+    public function following()
+    {
+        return $this->belongsToMany(Follower::class, 'follower_id');
     }
 }
