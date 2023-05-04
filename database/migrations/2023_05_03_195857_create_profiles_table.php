@@ -16,8 +16,8 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignIdFor(User::class, 'user_id');
             $table->string('username');
-            $table->text('about');
-            $table->string('image');
+            $table->text('about')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use App\Http\Requests\User\StoreUserRequest;
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -43,12 +45,20 @@ class AuthController extends Controller
 
     /**
      * Create user
-     * @param Illuminate\Http\Request $request
+     * @param App\Http\Requests\User\StoreUserRequest $request
      * 
      * @return void
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        
+        $data = $request->validated();
+
+        User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => bcrypt( $data['password'] )
+        ]);
+
+        return redirect()->route('login');
     }
 }

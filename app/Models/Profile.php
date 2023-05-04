@@ -11,6 +11,8 @@ class Profile extends Model
 {
     use HasFactory, UUID;
 
+    protected $guarded = [];
+
     /**
      * User of this profile
      */

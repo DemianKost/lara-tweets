@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +16,14 @@ use App\Http\Controllers\AuthController;
 */
 
 // Login routes
-Route::get('/login', [AuthController::class, 'login']);
+Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'authenticate']);
 
 // Register routes
 Route::get('/register', [AuthController::class, 'register']);
 Route::post('/register', [AuthController::class, 'store']);
+
+Route::middleware('auth')->group( function() {
+    // Profile routes
+    Route::get('/profile', [ProfileController::class, 'index']);
+});

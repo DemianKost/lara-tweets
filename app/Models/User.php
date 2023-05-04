@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Str;
 use App\Models\Profile;
 use App\Models\Tweet;
 use App\Models\Follower;
@@ -52,7 +53,8 @@ class User extends Authenticatable
     {
         static::created(function ($user) {
             Profile::create([
-                'user_id' => $user->id
+                'user_id' => $user->id,
+                'username' => 'user' . Str::random(20)
             ]);
         });
     }

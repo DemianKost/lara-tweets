@@ -8,9 +8,11 @@
                 <h2 class="text-3xl text-white text-center fomt-bold mb-8">Log in to your account</h2>
                 <div class="mb-6">
                     <input v-model="form.email" type="email" class="text-white bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 w-full" placeholder="E-mail" />
+                    <p v-if="errors.email" class="text-xs text-red-500 mt-2 mb-0">{{ errors.email }}</p>
                 </div>
                 <div class="mb-6">
-                    <input v-model="form.password" type="password" class="text-white bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 w-full" placeholder="Password" />
+                    <input v-model="form.password" type="password" class="text-white bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 w-full" placeholder="Password" autocomplete />
+                    <p v-if="errors.password" class="text-xs text-red-500 mt-2 mb-0">{{ errors.password }}</p>
                 </div>
                 <div class="mb-6">
                     <button type="submit" class="text-white bg-blue-600 border border-blue-500 rounded-lg px-4 py-2 w-full font-bold">Sign In</button>
@@ -24,6 +26,10 @@
 
 <script setup>
     import { useForm } from '@inertiajs/vue3';
+
+    let props = defineProps({
+        errors: Object
+    });
 
     let form = useForm({
         email: '',
