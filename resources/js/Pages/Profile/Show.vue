@@ -13,7 +13,7 @@
                     <div class="user__block-avatar absolute -bottom-16 h-32 w-32 mb-4 ml-5 rounded-full ring-4 ring-slate-700 bg-cover" style="background-image: url(https://photobest1.com/wp-content/uploads/2018/05/Thailand-Wallpapers-background-HD-04.jpg);"></div>
                 </div>
                 <div class="user__block-meta flex justify-end p-4">
-                    <a href="#" class="border border-blue-500 text-blue-500 px-4 py-2 rounded-full">Edit profile</a>
+                    <a href="#" class="border border-blue-500 text-blue-500 px-4 py-2 rounded-full">Follow</a>
                 </div>
                 <div class="user__block-names border-slate-800 border-b px-4 pb-4">
                     <p class="text-2xl text-white font-bold">{{ profile.data.name }}</p>
@@ -22,9 +22,8 @@
                 </div>
             </div>
 
-            <TweetForm />
-            <div class="tweets__block">
-
+            <div class="tweets__block" v-if="tweets">
+                
                 <TweetCard
                     v-for="tweet in tweets.data"
                     :key="tweet.id"
@@ -39,7 +38,6 @@
 <script setup>
     import Menu from '../../Shared/Menu.vue';
     import TweetCard from '../../Shared/TweetCard.vue';
-    import TweetForm from './Components/TweetForm.vue';
 
     let props = defineProps({
         profile: Object,

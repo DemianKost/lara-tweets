@@ -11,6 +11,8 @@ class Tweet extends Model
 {
     use HasFactory, UUID;
     
+    protected $guarded = [];
+
     /**
      * User that created tweet
      */

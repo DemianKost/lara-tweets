@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TweetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,5 +26,8 @@ Route::post('/register', [AuthController::class, 'store']);
 
 Route::middleware('auth')->group( function() {
     // Profile routes
-    Route::get('/profile', [ProfileController::class, 'index']);
+    Route::resource('/profile', ProfileController::class);
+
+    // Tweets routes
+    Route::resource('/tweet', TweetController::class);
 });

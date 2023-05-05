@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Models\Profile;
+use App\Http\Resources\Profile\ProfileResource;
+use App\Http\Resources\Tweet\TweetResource;
 
 class ProfileController extends Controller
 {
@@ -15,7 +18,22 @@ class ProfileController extends Controller
     public function index()
     {
         return Inertia::render('Profile/Index', [
-            'profile' => auth()->user()->profile
+            'profile' => new ProfileResource( auth()->user()->profile ),
+            'tweets' => TweetResource::collection( auth()->user()->tweets )
+        ]);
+    }
+
+    /**
+     * Show user profile by id
+     * @param App\Models\Profile $profile
+     * 
+     * @return Illuminate\Http\Response
+     */
+    public function show(Profile $profile)
+    {
+        return Inertia::render('Profile/Show', [
+            'profile' => new ProfileResource( $profile ),
+            'tweets' => TweetResource::collection( $profile->user->tweets )
         ]);
     }
 }
