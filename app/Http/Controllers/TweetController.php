@@ -23,4 +23,25 @@ class TweetController extends Controller
             'body' => $data['body']
         ]);
     }
+
+    /**
+     * Like tweet
+     * @param App\Models\Tweet $tweet
+     * 
+     * @return void
+     */
+    public function like(Tweet $tweet)
+    {
+        $checkLike = $tweet->hasLiked();
+
+        if ( $checkLike ) {
+            $checkLike->delete();
+        } else {
+            $tweet->likes()->create([
+                'likeable_id' => $tweet->id,
+                'user_id' => auth()->user()->id
+            ]);
+        }
+    }
+    
 }

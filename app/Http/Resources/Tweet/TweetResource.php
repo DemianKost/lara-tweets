@@ -22,6 +22,7 @@ class TweetResource extends JsonResource
                 'username' => $this->user->profile->username
             ],
             'body' => $this->body,
+            'likes' => $this->likes()->count(),
             'created_at' => Carbon::parse( $this->created_at )->diffForHumans()
         ];
     }

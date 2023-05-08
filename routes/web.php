@@ -30,4 +30,5 @@ Route::middleware('auth')->group( function() {
 
     // Tweets routes
     Route::resource('/tweet', TweetController::class);
+    Route::post('/tweet/{tweet}', [TweetController::class, 'like']);
 });
