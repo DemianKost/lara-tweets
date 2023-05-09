@@ -27,7 +27,7 @@ Route::post('/register', [AuthController::class, 'store']);
 Route::middleware('auth')->group( function() {
     // Profile routes
     Route::resource('/profile', ProfileController::class);
-
+    
     // Tweets routes
     Route::resource('/tweet', TweetController::class);
     Route::post('/tweet/{tweet}', [TweetController::class, 'like']);

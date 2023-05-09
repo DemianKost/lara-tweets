@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use App\Models\User;
+use App\Models\Tweet;
 
 return new class extends Migration
 {
@@ -15,6 +16,7 @@ return new class extends Migration
         Schema::create('tweets', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignIdFor(User::class, 'user_id');
+            $table->foreignIdFor(Tweet::class, 'parent_id')->nullable();
             $table->string('body', 250);
             $table->timestamps();
         });

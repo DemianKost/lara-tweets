@@ -19,7 +19,7 @@ class ProfileController extends Controller
     {
         return Inertia::render('Profile/Index', [
             'profile' => new ProfileResource( auth()->user()->profile ),
-            'tweets' => TweetResource::collection( auth()->user()->tweets )
+            'tweets' => TweetResource::collection( auth()->user()->tweets()->where('parent_id', NULL)->get() )
         ]);
     }
 

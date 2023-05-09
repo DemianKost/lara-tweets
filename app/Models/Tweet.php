@@ -26,6 +26,22 @@ class Tweet extends Model
     }
 
     /**
+     * Parent tweet
+     */
+    public function parent()
+    {
+        return $this->hasOne(Tweet::class, 'id', 'parent_id');
+    }
+
+    /**
+     * Children tweets
+     */
+    public function children()
+    {
+        return $this->hasMany(Tweet::class, 'parent_id', 'id');
+    }
+
+    /**
      * User that created tweet
      */
     public function user()

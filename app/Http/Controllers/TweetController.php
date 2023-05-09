@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Inertia\Inertia;
 use Illuminate\Http\Request;
-use App\Http\Requests\Tweet\StoreTweetRequest;
 use App\Models\Tweet;
+use App\Http\Requests\Tweet\StoreTweetRequest;
+use App\Http\Resources\Tweet\TweetResource;
 
 class TweetController extends Controller
 {
@@ -21,6 +23,19 @@ class TweetController extends Controller
         Tweet::create([
             'user_id' => auth()->user()->id,
             'body' => $data['body']
+        ]);
+    }
+
+    /**
+     * Show tweet by id
+     * @param App\Models\Tweet $tweet
+     * 
+     * @return Illuminate\Http\Response
+     */
+    public function show(Tweet $tweet)
+    {
+        return Inertia::render('Tweet/Show', [
+            'tweet' => new TweetResource( $tweet )
         ]);
     }
 
