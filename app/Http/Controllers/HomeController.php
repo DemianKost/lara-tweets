@@ -15,4 +15,14 @@ class HomeController extends Controller
     {
         
     }
+
+    /**
+     * Explore page
+     * 
+     * @return Illuminate\Http\Response
+     */
+    public function explore()
+    {
+        
+    }
 }

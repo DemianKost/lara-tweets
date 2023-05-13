@@ -19,10 +19,7 @@ class FollowerController extends Controller
         if ( $profile->user->isFollowing( $profile->user ) ) {
             $profile->user->unfollow( $profile->user );
         } else {
-            $profile->user->followers()->create([
-                'user_id' => $profile->user->id,
-                'follower_id' => auth()->user()->id
-            ]);
+            $profile->user->follow( $profile->user );
         }
     }
 }

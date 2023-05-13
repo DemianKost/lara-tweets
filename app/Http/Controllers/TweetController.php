@@ -59,4 +59,20 @@ class TweetController extends Controller
         }
     }
     
+    /**
+     * Respond for tweet
+     * @param App\Http\Requests\Tweet\StoreTweetRequest $request
+     * 
+     * @return void
+     */
+    public function respond(Tweet $tweet, StoreTweetRequest $request)
+    {
+        $data = $request->validated();
+
+        Tweet::create([
+            'user_id' => auth()->user()->id,
+            'parent_id' => $tweet->id,
+            'body' => $data['body']
+        ]);
+    }
 }

@@ -8,6 +8,10 @@
             <div class="border-slate-800 border-b p-4">
                 <h2 class="text-2xl text-white font-bold">Tweet</h2>
             </div>
+
+            <ResponseForm
+                :tweet="tweet.data"
+            />
             
             <div class="tweet__block border-slate-800 border-b flex space-x-4 p-4">
                 <div class="tweet__block-avatar w-1/12">
@@ -36,6 +40,7 @@
 
 <script setup>
     import Menu from '../../Shared/Menu.vue';
+    import ResponseForm from './Components/ResponseForm.vue';
     import ChildTweet from './Components/ChildTweet.vue';
 
     let props = defineProps({

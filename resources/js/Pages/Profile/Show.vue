@@ -16,11 +16,9 @@
                     <Link :href="`/follow/${profile.data.id}`" method="post" as="button" class="border border-blue-500 text-blue-500 px-4 py-2 rounded-full">{{ ( isFollowing ) ? 'Unfollow' : 'Follow' }}</Link>
                 </div>
 
-                <div class="user__block-names border-slate-800 border-b px-4 pb-4">
-                    <p class="text-2xl text-white font-bold">{{ profile.data.name }}</p>
-                    <p class="text-xs text-gray-500 mb-2">@{{ profile.data.username }}</p>
-                    <p class="text-md text-white">{{ profile.data.about }}</p>
-                </div>
+                <PorfileInfo
+                    :info="profile.data"
+                />
             </div>
 
             <div class="tweets__block" v-if="tweets">
@@ -37,6 +35,7 @@
 <script setup>
     import Menu from '../../Shared/Menu.vue';
     import TweetCard from '../../Shared/TweetCard.vue';
+    import PorfileInfo from '../Profile/Components/ProfileInfo.vue';
 
     let props = defineProps({
         profile: Object,

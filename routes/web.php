@@ -41,6 +41,7 @@ Route::middleware('auth')->group( function() {
     // Tweets routes
     Route::resource('/tweet', TweetController::class);
     Route::post('/tweet/{tweet}', [TweetController::class, 'like']);
+    Route::post('/tweet/{tweet}/respond', [TweetController::class, 'respond']);
 
     // Follower routes
     Route::post('/follow/{profile}', [FollowerController::class, 'follow']);
