@@ -29,7 +29,7 @@ class AuthController extends Controller
     public function authenticate(Request $request)
     {
         if ( Auth::attempt($request->only('email', 'password')) ) {
-            return redirect('/');
+            return redirect('/profile');
         }
     }
 

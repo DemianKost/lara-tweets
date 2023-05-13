@@ -80,7 +80,7 @@ class User extends Authenticatable
      */
     public function followers()
     {
-        return $this->belongsToMany(Follower::class, 'user_id');
+        return $this->hasMany(Follower::class);
     }
 
     /**
@@ -89,5 +89,27 @@ class User extends Authenticatable
     public function following()
     {
         return $this->belongsToMany(Follower::class, 'follower_id');
+    }
+
+    /**
+     * Check that user if following other user by id
+     */
+    public function isFollowing( User $user )
+    {
+        return $user->followers()
+            ->where('user_id', $user->id)
+            ->where('follower_id', auth()->id())
+            ->exists();
+    }
+
+    /**
+     * Unfollow user
+     */
+    public function unfollow( User $user )
+    {
+        return $user->followers()
+            ->where('user_id', $user->id)
+            ->where('follower_id', auth()->id())
+            ->delete();
     }
 }

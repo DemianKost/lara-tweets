@@ -14,8 +14,8 @@ return new class extends Migration
     {
         Schema::create('followers', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignIdFor(User::class, 'user_id');
-            $table->foreignIdFor(User::class, 'follower_id');
+            $table->foreignIdFor(User::class, 'user_id')->index();
+            $table->foreignIdFor(User::class, 'follower_id')->index();
             $table->timestamps();
         });
     }

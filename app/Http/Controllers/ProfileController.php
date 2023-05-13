@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use App\Models\Profile;
 use App\Http\Resources\Profile\ProfileResource;
 use App\Http\Resources\Tweet\TweetResource;
+use App\Http\Requests\Profile\UpdateProfileRequest;
 
 class ProfileController extends Controller
 {
@@ -33,7 +34,21 @@ class ProfileController extends Controller
     {
         return Inertia::render('Profile/Show', [
             'profile' => new ProfileResource( $profile ),
-            'tweets' => TweetResource::collection( $profile->user->tweets )
+            'tweets' => TweetResource::collection( $profile->user->tweets ),
+            'isFollowing' => $profile->user->isFollowing( $profile->user )
         ]);
+    }
+
+    /**
+     * Update current profile
+     * @param App\Http\Requests\UpdateProfileRequest $request
+     * 
+     * @return void
+     */
+    public function updateProfile(UpdateProfileRequest $request)
+    {
+        $data = $request->validated();
+
+
     }
 }

@@ -13,8 +13,9 @@
                     <div class="user__block-avatar absolute -bottom-16 h-32 w-32 mb-4 ml-5 rounded-full ring-4 ring-slate-700 bg-cover" style="background-image: url(https://photobest1.com/wp-content/uploads/2018/05/Thailand-Wallpapers-background-HD-04.jpg);"></div>
                 </div>
                 <div class="user__block-meta flex justify-end p-4">
-                    <a href="#" class="border border-blue-500 text-blue-500 px-4 py-2 rounded-full">Follow</a>
+                    <Link :href="`/follow/${profile.data.id}`" method="post" as="button" class="border border-blue-500 text-blue-500 px-4 py-2 rounded-full">{{ ( isFollowing ) ? 'Unfollow' : 'Follow' }}</Link>
                 </div>
+
                 <div class="user__block-names border-slate-800 border-b px-4 pb-4">
                     <p class="text-2xl text-white font-bold">{{ profile.data.name }}</p>
                     <p class="text-xs text-gray-500 mb-2">@{{ profile.data.username }}</p>
@@ -23,13 +24,11 @@
             </div>
 
             <div class="tweets__block" v-if="tweets">
-                
                 <TweetCard
                     v-for="tweet in tweets.data"
                     :key="tweet.id"
                     :tweet="tweet"
                 />
-
             </div>
         </div>
     </div>
@@ -41,6 +40,7 @@
 
     let props = defineProps({
         profile: Object,
-        tweets: Object
+        tweets: Object,
+        isFollowing: Boolean
     });
 </script>
