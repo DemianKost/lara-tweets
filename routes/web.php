@@ -35,8 +35,9 @@ Route::middleware('auth')->group( function() {
     Route::get('/', [HomeController::class, 'index']);
 
     // Profile routes
-    Route::resource('/profile', ProfileController::class);
+    Route::get('/profile/followers', [ProfileController::class, 'followers']);
     Route::post('/profile/me/update', [ProfileController::class, 'updateProfile']);
+    Route::resource('/profile', ProfileController::class);
     
     // Tweets routes
     Route::resource('/tweet', TweetController::class);
