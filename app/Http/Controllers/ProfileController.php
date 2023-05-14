@@ -8,6 +8,7 @@ use App\Models\Profile;
 use App\Http\Resources\Profile\ProfileResource;
 use App\Http\Resources\Tweet\TweetResource;
 use App\Http\Resources\Follower\FollowerResource;
+use App\Http\Resources\Follower\FollowingResource;
 use App\Http\Requests\Profile\UpdateProfileRequest;
 
 class ProfileController extends Controller
@@ -36,7 +37,7 @@ class ProfileController extends Controller
         return Inertia::render('Profile/Show', [
             'profile' => new ProfileResource( $profile ),
             'tweets' => TweetResource::collection( $profile->user->tweets ),
-            'isFollowing' => $profile->user->isFollowing( $profile->user )
+            'isFollowing' => $profile->user->isFollowing()
         ]);
     }
 
@@ -61,7 +62,21 @@ class ProfileController extends Controller
     public function followers()
     {
         return Inertia::render('Profile/Followers', [
+            'title' => 'Your followers',
             'followers' => FollowerResource::collection( auth()->user()->followers()->get() )
+        ]);
+    }
+
+    /**
+     * Preview current profile following
+     * 
+     * @return Illuminate\Http\Response
+     */
+    public function following()
+    {
+        return Inertia::render('Profile/Followers', [
+            'title' => 'You following',
+            'followers' => FollowingResource::collection( auth()->user()->following()->get() )
         ]);
     }
 }

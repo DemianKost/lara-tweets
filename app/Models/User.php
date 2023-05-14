@@ -80,47 +80,56 @@ class User extends Authenticatable
      */
     public function followers()
     {
-        return $this->hasMany(Follower::class);
+        return $this->morphMany(Follower::class, 'followable')->select('follower_id');
     }
 
     /**
-     * Following of current user
+     * Followings of current user
      */
     public function following()
     {
-        return $this->belongsToMany(Follower::class);
+        return $this->morphMany(Follower::class, 'follower')->select('followable_id');
     }
 
     /**
-     * Check that user if following other user by id
+     * Check following user by id
+     * 
+     * @return boolean
      */
-    public function isFollowing( User $user )
+    public function isFollowing()
     {
-        return $user->followers()
-            ->where('user_id', $user->id)
+        return $this->followers()
             ->where('follower_id', auth()->id())
+            ->where('followable_id', $this->id)
             ->exists();
     }
 
     /**
-     * Follow user
+     * Follow user by current user
+     * 
+     * @return void
      */
-    public function follow( User $user )
+    public function follow()
     {
-        $user->followers()->create([
-            'user_id' => $user->id,
-            'follower_id' => auth()->user()->id
-        ]);
+        $this->followers()
+            ->create([
+                'follower_type' => 'App\Models\User',
+                'follower_id' => auth()->id(),
+                'followable_type' => 'App\Models\User',
+                'followable_id' => $this->id
+            ]);
     }
 
     /**
-     * Unfollow user
+     * Unfollow user by current user
+     * 
+     * @return void
      */
-    public function unfollow( User $user )
+    public function unfollow()
     {
-        return $user->followers()
-            ->where('user_id', $user->id)
+        $this->followers()
             ->where('follower_id', auth()->id())
+            ->where('followable_id', $this->id)
             ->delete();
     }
 }

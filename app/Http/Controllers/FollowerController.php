@@ -16,10 +16,10 @@ class FollowerController extends Controller
      */
     public function follow(Profile $profile, Request $request)
     {
-        if ( $profile->user->isFollowing( $profile->user ) ) {
-            $profile->user->unfollow( $profile->user );
+        if ( $profile->user->isFollowing() ) {
+            $profile->user->unfollow();
         } else {
-            $profile->user->follow( $profile->user );
+            $profile->user->follow();
         }
     }
 }

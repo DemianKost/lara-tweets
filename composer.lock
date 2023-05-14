@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6963a0c8bf5015400bb3d4c54d4c1dd6",
+    "content-hash": "9ed65983d0bda7f54be3fb8c6ca7a8a2",
     "packages": [
         {
             "name": "brick/math",
@@ -1773,6 +1773,77 @@
                 }
             ],
             "time": "2022-04-17T13:12:02+00:00"
+        },
+        {
+            "name": "lecturize/laravel-followers",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Lecturize/Laravel-Followers.git",
+                "reference": "789bb59ef8789b4e4d90f5ba3923f147f747c131"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Lecturize/Laravel-Followers/zipball/789bb59ef8789b4e4d90f5ba3923f147f747c131",
+                "reference": "789bb59ef8789b4e4d90f5ba3923f147f747c131",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^9.0|^10.0",
+                "illuminate/support": "^9.0|^10.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.4",
+                "orchestra/testbench": "^7.0|^8.0",
+                "phpunit/phpunit": "^8.0|^9.0|^10.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Lecturize\\Followers\\FollowersServiceProvider"
+                    ],
+                    "aliases": {
+                        "Tag": "Lecturize\\Followers\\Facades\\Follower"
+                    }
+                },
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Lecturize\\Followers\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Manfred Poellmann",
+                    "homepage": "https://twitter.com/AMPoellmann",
+                    "role": "developer"
+                }
+            ],
+            "description": "Build a poly-morph Follower system or simply associate Eloquent models in Laravel 5.",
+            "homepage": "https://github.com/Lecturize/Laravel-Followers",
+            "keywords": [
+                "Followers",
+                "eloquent",
+                "followable",
+                "follower",
+                "follower system",
+                "following",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/Lecturize/Laravel-Followers/issues",
+                "source": "https://github.com/Lecturize/Laravel-Followers"
+            },
+            "time": "2023-02-21T16:53:26+00:00"
         },
         {
             "name": "monolog/monolog",
