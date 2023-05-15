@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
 use App\Models\Profile;
 use App\Models\Tweet;
 use App\Models\Follower;
+use App\Models\Bookmark;
 
 class User extends Authenticatable
 {
@@ -73,6 +74,14 @@ class User extends Authenticatable
     public function tweets()
     {
         return $this->hasMany(Tweet::class);
+    }
+
+    /**
+     * User bookmarks
+     */
+    public function bookmarks()
+    {
+        return $this->hasMany(Bookmark::class);
     }
 
     /**

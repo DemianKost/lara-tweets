@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TweetController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FollowerController;
+use App\Http\Controllers\BookmarkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,4 +48,7 @@ Route::middleware('auth')->group( function() {
 
     // Follower routes
     Route::post('/follow/{profile}', [FollowerController::class, 'follow']);
+
+    // Bookmark routes
+    Route::resource('/bookmark', BookmarkController::class);
 });
