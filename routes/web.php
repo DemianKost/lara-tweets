@@ -50,5 +50,6 @@ Route::middleware('auth')->group( function() {
     Route::post('/follow/{profile}', [FollowerController::class, 'follow']);
 
     // Bookmark routes
+    Route::post('/bookmark/{tweet}', [BookmarkController::class, 'bookmark']);
     Route::resource('/bookmark', BookmarkController::class);
 });

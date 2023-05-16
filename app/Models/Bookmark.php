@@ -12,6 +12,8 @@ class Bookmark extends Model
 {
     use HasFactory, UUID;
 
+    protected $guarded = [];
+
     /**
      * User that owns bookmark
      */
