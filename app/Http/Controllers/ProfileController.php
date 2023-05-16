@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Profile;
 use App\Http\Resources\Profile\ProfileResource;
-use App\Http\Resources\Tweet\TweetResource;
+use App\Http\Resources\Tweet\IndexTweetResource;
 use App\Http\Resources\Follower\FollowerResource;
 use App\Http\Resources\Follower\FollowingResource;
 use App\Http\Requests\Profile\UpdateProfileRequest;
@@ -22,7 +22,7 @@ class ProfileController extends Controller
     {
         return Inertia::render('Profile/Index', [
             'profile' => new ProfileResource( auth()->user()->profile ),
-            'tweets' => TweetResource::collection( auth()->user()->tweets()->where('parent_id', NULL)->get() )
+            'tweets' => IndexTweetResource::collection( auth()->user()->tweets()->where('parent_id', NULL)->get() )
         ]);
     }
 
@@ -36,7 +36,7 @@ class ProfileController extends Controller
     {
         return Inertia::render('Profile/Show', [
             'profile' => new ProfileResource( $profile ),
-            'tweets' => TweetResource::collection( $profile->user->tweets ),
+            'tweets' => IndexTweetResource::collection( $profile->user->tweets ),
             'isFollowing' => $profile->user->isFollowing()
         ]);
     }
