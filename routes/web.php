@@ -34,6 +34,7 @@ Route::middleware('guest')->group( function() {
 Route::middleware('auth')->group( function() {
     // Home routes
     Route::get('/', [HomeController::class, 'index']);
+    Route::get('/explore', [HomeController::class, 'explore']);
 
     // Profile routes
     Route::get('/profile/followers', [ProfileController::class, 'followers']);
