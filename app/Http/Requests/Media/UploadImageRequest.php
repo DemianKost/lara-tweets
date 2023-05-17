@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Tweet;
+namespace App\Http\Requests\Media;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\File;
 
-class StoreTweetRequest extends FormRequest
+class UploadImageRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +23,11 @@ class StoreTweetRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'body' => 'required|string|max:250',
-            'file' => 'nullable'
+            'file' => [
+                'required',
+                File::types(['png', 'jpg'])
+                    ->max(5 * 1024),
+            ]
         ];
     }
 }

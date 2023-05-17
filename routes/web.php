@@ -7,6 +7,7 @@ use App\Http\Controllers\TweetController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\BookmarkController;
+use App\Http\Controllers\UploadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,4 +54,7 @@ Route::middleware('auth')->group( function() {
     // Bookmark routes
     Route::post('/bookmark/{tweet}', [BookmarkController::class, 'bookmark']);
     Route::resource('/bookmark', BookmarkController::class);
+
+    // Uploads routes
+    Route::post('/upload', UploadController::class)->name('upload');
 });

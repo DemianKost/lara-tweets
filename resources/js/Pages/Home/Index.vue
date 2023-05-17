@@ -2,7 +2,7 @@
     <div class="border-slate-800 border-b p-4">
         <h2 class="text-2xl text-white font-bold">Explore tweets</h2>
     </div>
-    <div class="home-tweets">
+    <div v-if="tweets" class="home-tweets">
 
         <TweetCard
             v-for="tweet in tweets.data"
@@ -10,6 +10,9 @@
             :tweet="tweet"
         />
 
+    </div>
+    <div v-else class="home-tweets">
+        <h2 class="text-xl text-center text-white py-4">Start following somebody to see tweets 😊</h2>
     </div>
 </template>
 

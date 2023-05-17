@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Tweet;
 use App\Http\Requests\Tweet\StoreTweetRequest;
 use App\Http\Resources\Tweet\TweetResource;
+use Illuminate\Support\Facades\Storage;
 
 class TweetController extends Controller
 {

@@ -17,7 +17,9 @@
         />
     </div>
     <div class="tweets__form-block">
-        <TweetForm />
+        <TweetForm
+            :errors="errors"
+        />
     </div>
     <div class="tweets__block">
         <TweetCard
@@ -41,6 +43,7 @@
     let editing = ref(false);
 
     let props = defineProps({
+        errors: Object,
         profile: Object,
         tweets: Object
     });

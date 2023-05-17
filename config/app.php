@@ -144,6 +144,10 @@ return [
         // 'store'  => 'redis',
     ],
 
+    'uploads' => [
+        'disk' => 'local'
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
