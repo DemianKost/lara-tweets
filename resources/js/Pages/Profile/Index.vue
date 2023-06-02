@@ -14,6 +14,7 @@
         </div>
         <ProfileInfo
             :info="profile.data"
+            :editing="editing"
         />
     </div>
     <div class="tweets__form-block">

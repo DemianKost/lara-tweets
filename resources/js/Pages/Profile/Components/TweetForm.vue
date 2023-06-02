@@ -34,6 +34,7 @@
 
     async function createTweet() {
         await form.post('/tweet');
+        
         if ( form.file != null ) {
             form.post('/upload');
         }

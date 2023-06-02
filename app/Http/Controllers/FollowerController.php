@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Follower;
 use App\Models\Profile;
+use App\Actions\Follower\FollowUser;
 
 class FollowerController extends Controller
 {
@@ -16,10 +16,6 @@ class FollowerController extends Controller
      */
     public function follow(Profile $profile, Request $request)
     {
-        if ( $profile->user->isFollowing() ) {
-            $profile->user->unfollow();
-        } else {
-            $profile->user->follow();
-        }
+        FollowUser::run( $profile );
     }
 }

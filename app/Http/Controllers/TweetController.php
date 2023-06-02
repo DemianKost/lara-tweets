@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Models\Tweet;
+use App\Actions\Tweet\CreateTweet;
+use App\Actions\Tweet\LikeTweet;
 use App\Http\Requests\Tweet\StoreTweetRequest;
 use App\Http\Resources\Tweet\TweetResource;
 use Illuminate\Support\Facades\Storage;
@@ -21,10 +23,7 @@ class TweetController extends Controller
     {
         $data = $request->validated();
 
-        Tweet::create([
-            'user_id' => auth()->user()->id,
-            'body' => $data['body']
-        ]);
+        CreateTweet::run( $data );
     }
 
     /**
@@ -48,16 +47,7 @@ class TweetController extends Controller
      */
     public function like(Tweet $tweet)
     {
-        $checkLike = $tweet->hasLiked();
-
-        if ( $checkLike ) {
-            $checkLike->delete();
-        } else {
-            $tweet->likes()->create([
-                'likeable_id' => $tweet->id,
-                'user_id' => auth()->user()->id
-            ]);
-        }
+        LikeTweet::run( $tweet );
     }
     
     /**
@@ -70,10 +60,6 @@ class TweetController extends Controller
     {
         $data = $request->validated();
 
-        Tweet::create([
-            'user_id' => auth()->user()->id,
-            'parent_id' => $tweet->id,
-            'body' => $data['body']
-        ]);
+        CreateTweet::run( $data, $tweet->id );
     }
 }

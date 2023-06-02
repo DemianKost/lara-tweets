@@ -1,6 +1,9 @@
 <template>
     <div class="user__block-names border-slate-800 border-b px-4 pb-4 flex items-center">
-        <div class="w-1/2">
+        <form v-if="editing">
+            
+        </form>
+        <div v-else class="w-1/2">
             <p class="text-2xl text-white font-bold">{{ info.name }}</p>
             <p class="text-xs text-gray-500 mb-2">@{{ info.username }}</p>
             <p class="text-md text-white">{{ info.about }}</p>
@@ -13,6 +16,7 @@
 
 <script setup>
     defineProps({
-        info: Object
+        info: Object,
+        editing: Boolean
     })
 </script>
