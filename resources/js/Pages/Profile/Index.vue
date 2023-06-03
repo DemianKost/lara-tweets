@@ -41,7 +41,7 @@
     
     defineOptions({ layout: DefaultLayout });
 
-    let editing = ref(false);
+    const editing = ref(false);
 
     let props = defineProps({
         errors: Object,
@@ -55,7 +55,7 @@
     });
 
     function updateProfile() {
-        editForm.post('/profile/me/update');
-        editing = ! editing;
+        editForm.post('/profile/update');
+        editing.value = false;
     }
 </script>

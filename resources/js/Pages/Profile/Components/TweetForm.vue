@@ -3,7 +3,9 @@
         <h2 class="text-md text-white font-semibold mb-2">Create a new tweet</h2>
         <form @submit.prevent="createTweet()">
             <textarea v-model="form.body" type="text" class="text-white bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 w-full resize-none mb-0" rows="3" placeholder="Type here"></textarea>
-            <p class="text-xs text-red-500 mb-2" v-if="errors.body">{{ errors.body }}</p>
+            <div v-if="errors">
+                <p class="text-xs text-red-500 mb-2" v-if="errors.body">{{ errors.body }}</p>
+            </div>
             <div class="flex items-center">
                 <label for="image" class="text-white cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-4">

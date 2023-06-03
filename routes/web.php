@@ -40,7 +40,7 @@ Route::middleware('auth')->group( function() {
     // Profile routes
     Route::get('/profile/followers', [ProfileController::class, 'followers']);
     Route::get('/profile/following', [ProfileController::class, 'following']);
-    Route::post('/profile/me/update', [ProfileController::class, 'updateProfile']);
+    Route::post('/profile/update', [ProfileController::class, 'updateProfile']);
     Route::resource('/profile', ProfileController::class);
     
     // Tweets routes

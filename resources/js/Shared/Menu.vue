@@ -13,10 +13,6 @@
             <Link href="#">Notifications</Link>
         </li>
         <li class="text-white text-lg font-bold flex items-center">
-            <img src="/icons/messages.svg" class="w-6 h-6 mr-2" />
-            <Link href="#">Messages</Link>
-        </li>
-        <li class="text-white text-lg font-bold flex items-center">
             <img src="/icons/bookmarks.svg" class="w-6 h-6 mr-2" />
             <Link href="/bookmark">Bookmarks</Link>
         </li>

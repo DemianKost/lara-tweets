@@ -10,6 +10,7 @@ use App\Http\Resources\Tweet\IndexTweetResource;
 use App\Http\Resources\Follower\FollowerResource;
 use App\Http\Resources\Follower\FollowingResource;
 use App\Http\Requests\Profile\UpdateProfileRequest;
+use App\Actions\Profile\UpdateProfile;
 
 class ProfileController extends Controller
 {
@@ -51,7 +52,7 @@ class ProfileController extends Controller
     {
         $data = $request->validated();
 
-
+        UpdateProfile::run( $data );
     }
 
     /**
